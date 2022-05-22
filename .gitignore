@@ -1,0 +1,7 @@
+node_modules
+.parcel-cache
+dist
+solidity/package-lock.json
+solidity/build
+solidity/types
+solidity/node_modules

@@ -1,0 +1,16 @@
+{
+  "name": "ownershipchecker",
+  "version": "1.0.0",
+  "description": "Standardizing ownerOf",
+  "main": "index.js",
+  "scripts": {
+    "build": "parcel build src/index.html",
+    "start": "parcel src/index.html"
+  },
+  "keywords": ["ownerof","nft"],
+  "author": "Benjamin Larcher",
+  "license": "ISC",
+  "dependencies": {
+    "parcel": "^2.5.0"
+  }
+}
