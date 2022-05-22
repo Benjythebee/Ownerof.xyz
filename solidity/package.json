@@ -1,8 +1,11 @@
 {
-  "name": "ownershipChecker-solidity",
+  "name": "ownershipchecker-solidity",
   "version": "0.9.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": ">=16"
+  },
   "scripts": {
     "types": "npx typechain --target=truffle-v5 './build/contracts/*.json'",
     "postinstall": "npm run compile && npm run types",
