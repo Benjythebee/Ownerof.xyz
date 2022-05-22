@@ -11,10 +11,6 @@ import "../Interfaces/IOwnershipInstructor.sol";
  */
 abstract contract OwnershipInstructor is IOwnershipInstructor{
 
-    constructor(){
-
-    }
-
 /**
  * This function should be internal and should be overriden.
  * It should obtain an address as input and should return a boolean value;
