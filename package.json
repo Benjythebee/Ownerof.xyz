@@ -2,7 +2,10 @@
   "name": "ownershipchecker",
   "version": "1.0.0",
   "description": "Standardizing ownerOf",
-  "main": "index.js",
+  "main": "index.html",
+  "engines": {
+    "node": ">=16"
+  },
   "scripts": {
     "build": "parcel build src/index.html",
     "start": "parcel src/index.html"
