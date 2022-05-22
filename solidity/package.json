@@ -2,7 +2,7 @@
   "name": "ownershipchecker-solidity",
   "version": "0.9.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.html",
   "engines": {
     "node": ">=16"
   },
