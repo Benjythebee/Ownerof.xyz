@@ -34,6 +34,18 @@ interface IOwnershipInstructorRegisterV1 {
         view
         returns (address[] memory _addresses,uint256 _nextpage);
 
+
+      /**
+     * @dev Paginated to avoid risk of DoS.
+     * @notice Function that returns the list of Instructor names (pages of 150 elements)
+     * @param page page index, 0 is the first 150 elements of the list of implementation.
+     * @return _names list of instructor names and _nextpage is the index of the next page, _nextpage is 0 if there are no more pages.
+     */
+    function getListOfInstructorNames(uint256 page)
+        external
+        view
+        returns (string[] memory _names,uint256 _nextpage);
+
     function addInstructor(address _instructor,string memory _name) external;
     function addInstructorAndImplementation(address _instructor,string memory _name, address _implementation) external;
 

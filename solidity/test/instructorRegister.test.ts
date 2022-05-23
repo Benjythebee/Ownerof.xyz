@@ -74,14 +74,35 @@ contract("OwnershipInstructorRegisterV1 - Unit test",async function (accounts) {
     expect(list[0][0]).to.be.equal(classicERC721.address);
   });
 
-  it('Remove instructor ERC721', async () => {
-    await register.removeInstructor('ERC721');
-    await expectRevert(register.getInstructorByName('ERC721'),"Name does not exist")
+  it('Get list of Instructors', async () => {
+    const listOfNames = await register.getListOfInstructorNames(0);
+    expect(listOfNames[0].length).to.be.equal(2);
+    expect(listOfNames[0][0]).to.be.equal('ERC721');
+    expect(listOfNames[0][1]).to.be.equal('ERC1155');
   });
 
   it('Remove instructor ERC721', async () => {
     await register.removeInstructor('ERC721');
     await expectRevert(register.getInstructorByName('ERC721'),"Name does not exist")
+  });
+
+  it('Previous erc721 implementation is null', async () => {
+    const name = await register.implementationToInstructorName(classicERC721.address)
+    expect(name).to.be.equal('');
+  });
+
+  it('Re-Add Instructor ERC721', async () => {
+    await register.addInstructor(ERC721instructor.address,'ERC721');
+    const p = await register.getInstructorByName('ERC721')
+    expect(p._impl).to.be.equal(ERC721instructor.address)
+    expect(p._name).to.be.equal('ERC721')
+  });
+
+  it('Re-register implementation for erc721', async () => {
+    await register.linkImplementationToInstructor(classicERC721.address,'ERC721');
+    const list = await register.getImplementationsOf('ERC721',0)
+    expect(list[0].length).to.be.equal(1);
+    expect(list[0][0]).to.be.equal(classicERC721.address);
   });
 
 })

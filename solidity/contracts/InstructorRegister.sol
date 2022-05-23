@@ -106,6 +106,42 @@ contract OwnershipInstructorRegisterV1 is Ownable,IOwnershipInstructorRegisterV1
         
     }
 
+      /**
+     * @dev Paginated to avoid risk of DoS.
+     * @notice Function that returns the list of Instructor names (pages of 150 elements)
+     * @param page page index, 0 is the first 150 elements of the list of implementation.
+     * @return _names list of instructor names and _nextpage is the index of the next page, _nextpage is 0 if there are no more pages.
+     */
+    function getListOfInstructorNames(uint256 page)
+        public
+        view
+        returns (string[] memory _names,uint256 _nextpage)
+    {
+
+        uint256 size = instructorRegister.length;
+        uint256 offset = page*_maxItemsPerPage;
+        uint256 resultSize;
+        if(size>= _maxItemsPerPage+offset){
+            // size is above or equal to 150* page index + 150
+            resultSize = _maxItemsPerPage;
+        }else if (size< _maxItemsPerPage+offset){
+            // size is less than 150* page index + 150
+            resultSize = size - offset;
+        }
+        string[] memory names = new string[](resultSize);
+        uint256 index = 0;
+        for (uint256 i = offset; i < resultSize+offset; i++) {
+            names[index] = instructorRegister[i]._name;
+            index++;
+        }
+        if(size<=(names.length+offset)){
+            return (names,0);
+        }else{
+            return (names,page+1);
+        }
+        
+    }
+
     function _safeAddInstructor(address _instructor,string memory _name) private {
         bytes32 _hash = hashInstructor(_instructor);
         bytes32 _nameHash = hashName(_name);
