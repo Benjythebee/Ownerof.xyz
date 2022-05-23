@@ -19,6 +19,26 @@ https://github.com/Benjythebee/OwnershipChecker/blob/master/solidity/readme.md
 
 To add a supported contract, create an issue or a pull request!
 
+ <p>
+    List of currently supported chains:
+    <ul>
+        <li>Polygon</li>
+        <li>Ethereum</li>
+    </ul>
+    List of currently supported Contracts:
+    <ul>
+        <li>any ERC1155</li>
+        <li>any ERC721</li>
+        <li>Cryptopunk on Ethereum</li>
+    </ul>
+
+    <b>Todo:</b>
+    <ul>
+        <li>More contracts to be supported</li>
+        <li>reate ownerOf for ERC20;</li>
+        <li>Create api call for multi-Chain ownerOfTokenAt()</li>
+    </ul>
+</p>
 
 # Contributing;
 
