@@ -12,7 +12,7 @@
 <strong>Goal:</strong> Know the owner of an NFT in one single call.
 
 <b>Behind the box:</b>
-![diagram (2)](https://user-images.githubusercontent.com/38708022/169895999-4ead1ff5-cd45-4e15-a1b3-202515253f62.png)
+![diagram (3)](https://user-images.githubusercontent.com/38708022/169896291-fc63b6bf-a7e4-4850-bfd4-6db101f552c3.png)
 
 # Supported Conctracts:
 https://github.com/Benjythebee/OwnershipChecker/blob/master/solidity/readme.md
