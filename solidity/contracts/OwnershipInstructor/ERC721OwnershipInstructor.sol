@@ -4,7 +4,8 @@ pragma solidity ^0.8.12;
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/utils/introspection/ERC165Checker.sol";
-import "./OwnershipInstructor.sol";
+import "@openzeppelin/contracts/utils/introspection/IERC165.sol";
+import "../Interfaces/IOwnershipInstructor.sol";
 
 /**
  * This is a template contract;
@@ -12,8 +13,9 @@ import "./OwnershipInstructor.sol";
  * by generalising the obtention of the owner of NFTs.
  * The reason for this solution was because NFTs nowadays have standards, but not all NFTs support these standards.
  */
-contract ERC721OwnershipInstructor is OwnershipInstructor{
+contract ERC721OwnershipInstructor is IERC165, IOwnershipInstructor{
     bytes4 internal ERC721_ID = type(IERC721).interfaceId;
+    using ERC165Checker for address;
     constructor(){
 
     }
@@ -29,7 +31,7 @@ contract ERC721OwnershipInstructor is OwnershipInstructor{
  * 
  */
     function isValidInterface (address _impl) public view override returns (bool){
-        return ERC165Checker.supportsInterface(_impl, ERC721_ID);
+        return _impl.supportsInterface(ERC721_ID);
     }
 
     /**
@@ -46,5 +48,9 @@ contract ERC721OwnershipInstructor is OwnershipInstructor{
     function ownerOfTokenOnImplementation(address _impl,uint256 _tokenId,address _potentialOwner) public view override returns (address){
         require(isValidInterface(_impl),"Invalid interface");
         return ERC721(_impl).ownerOf(_tokenId);
+    }
+
+    function supportsInterface(bytes4 interfaceId) public pure override returns (bool) {
+        return interfaceId == type(IOwnershipInstructor).interfaceId || interfaceId == type(IERC165).interfaceId;
     }
 }

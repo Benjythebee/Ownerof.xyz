@@ -1,7 +1,7 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.12;
-
-import "./OwnershipInstructor.sol";
+import "@openzeppelin/contracts/utils/introspection/IERC165.sol";
+import "../Interfaces/IOwnershipInstructor.sol";
 
 interface ICryptoPunkContract {
     function punkIndexToAddress(uint256) external view returns (address);
@@ -15,7 +15,7 @@ interface ICryptoPunkContract {
  * by generalising the obtention of the owner of NFTs.
  * The reason for this solution was because NFTs nowadays have standards, but not all NFTs support these standards.
  */
-contract CryptoPunkOwnershipInstructor is OwnershipInstructor{
+contract CryptoPunkOwnershipInstructor is IERC165,IOwnershipInstructor{
     address cryptopunk_impl;
     constructor(){
         cryptopunk_impl = 0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB;
@@ -47,5 +47,9 @@ contract CryptoPunkOwnershipInstructor is OwnershipInstructor{
     function ownerOfTokenOnImplementation(address _impl,uint256 _tokenId,address _potentialOwner) public view override returns (address){
         require(isValidInterface(_impl),"Invalid interface");
         return ICryptoPunkContract(_impl).punkIndexToAddress(_tokenId);
+    }
+
+    function supportsInterface(bytes4 interfaceId) public pure override returns (bool) {
+        return interfaceId == type(IOwnershipInstructor).interfaceId || interfaceId == type(IERC165).interfaceId;
     }
 }

@@ -9,11 +9,7 @@ interface IOwnershipInstructorRegisterV1 {
         address _impl;
         string _name;
     }
-    function owner() external view returns (address);
-
-    function instructorRegister(uint256) external view returns (address);
   
-    function implementationToInstructorName(address) external view returns (string memory);
 
     event NewInstructor(address indexed _instructor,string _name);
     event RemovedInstructor(address indexed _instructor,string _name);
@@ -24,7 +20,7 @@ interface IOwnershipInstructorRegisterV1 {
 
     function name() external view returns (string memory);
 
-    function getInstructorByName (string memory _name) external view returns(address);
+    function getInstructorByName (string memory _name) external view returns(Instructor memory);
 
     /**
      * @dev Paginated to avoid risk of DoS.
@@ -41,8 +37,10 @@ interface IOwnershipInstructorRegisterV1 {
     function addInstructor(address _instructor,string memory _name) external;
     function addInstructorAndImplementation(address _instructor,string memory _name, address _implementation) external;
 
-    function linkImplementationToInstructor(address _implementation,string memory _name) external view;
-    function unlinkImplementationToInstructor(address _impl) external view;
+    function linkImplementationToInstructor(address _implementation,string memory _name) external;
+    function unlinkImplementationToInstructor(address _impl) external;
 
-    function removeInstructor(string memory _name) external view;
+    function removeInstructor(string memory _name) external;
+
+    function instructorGivenImplementation(address _impl)external view returns (Instructor memory _instructor);
 }

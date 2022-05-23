@@ -3,8 +3,9 @@ pragma solidity ^0.8.12;
 
 import "@openzeppelin/contracts/token/ERC1155/IERC1155.sol";
 import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
+import "@openzeppelin/contracts/utils/introspection/IERC165.sol";
 import "@openzeppelin/contracts/utils/introspection/ERC165Checker.sol";
-import "./OwnershipInstructor.sol";
+import "../Interfaces/IOwnershipInstructor.sol";
 
 /**
  * OwnershipInstructor wrapper around the ERC1155 standard.
@@ -12,7 +13,7 @@ import "./OwnershipInstructor.sol";
  * by generalising the obtention of the owner of NFTs.
  * The reason for this solution was because NFTs nowadays have standards, but not all NFTs support these standards.
  */
-contract ERC1155OwnershipInstructor is OwnershipInstructor{
+contract ERC1155OwnershipInstructor is IERC165, IOwnershipInstructor{
     bytes4 internal ERC1155_ID = type(IERC1155).interfaceId;
     constructor(){
 
@@ -54,5 +55,12 @@ contract ERC1155OwnershipInstructor is OwnershipInstructor{
         }else{
             return address(0);
         }
+    }
+
+    /**
+     * See ERC165 -supportInterface()
+     */
+    function supportsInterface(bytes4 interfaceId) public pure override returns (bool) {
+        return interfaceId == type(IOwnershipInstructor).interfaceId || interfaceId == type(IERC165).interfaceId;
     }
 }

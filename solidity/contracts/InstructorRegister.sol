@@ -4,19 +4,15 @@ pragma solidity ^0.8.12;
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/introspection/ERC165Checker.sol";
 import "./Interfaces/IOwnershipInstructor.sol";
+import "./Interfaces/IOwnershipInstructorRegisterV1.sol";
 /**
  * A register of OwnershipInstructor contracts that helps standardize "ownerOf" for NFTs.
  */
-contract OwnershipInstructorRegisterV1 is Ownable {
-    bytes4 public INSTRUCTOR_ID;
-
+contract OwnershipInstructorRegisterV1 is Ownable,IOwnershipInstructorRegisterV1 {
+    bytes4 public immutable INSTRUCTOR_ID = type(IOwnershipInstructor).interfaceId;
+    using ERC165Checker for address;
     ///@dev name of the contract
     string internal __name;
-
-    struct Instructor{
-        address _impl;
-        string _name;
-    }
 
     ///@dev list of Ownership instructor contracts
     Instructor[] public instructorRegister;
@@ -43,14 +39,13 @@ contract OwnershipInstructorRegisterV1 is Ownable {
      */
     mapping(bytes32=>bool) internal registeredName;
 
-    event NewInstructor(address indexed _instructor,string _name);
-    event RemovedInstructor(address indexed _instructor,string _name);
-    event UnlinkedImplementation(string indexed _name,address indexed _implementation);
-    event LinkedImplementation(string indexed _name,address indexed _implementation);
+    // event NewInstructor(address indexed _instructor,string _name);
+    // event RemovedInstructor(address indexed _instructor,string _name);
+    // event UnlinkedImplementation(string indexed _name,address indexed _implementation);
+    // event LinkedImplementation(string indexed _name,address indexed _implementation);
 
     constructor(){
         __name="OwnershipInstructorRegisterV1";
-        INSTRUCTOR_ID = type(IOwnershipInstructor).interfaceId;
     }
 
     function hashInstructor(address _instructor) internal view returns (bytes32 _hash){
@@ -130,7 +125,7 @@ contract OwnershipInstructorRegisterV1 is Ownable {
     function addInstructor(address _instructor,string memory _name) public onlyOwner {
         require(_instructor !=address(0),"Instructor address cannot be address zero");
         require(bytes(_name).length>4,"Name is too short");
-        require(ERC165Checker.supportsInterface(_instructor, INSTRUCTOR_ID),"Contract does not support instructor interface");
+        require(_instructor.supportsInterface(INSTRUCTOR_ID),"Contract does not support instructor interface");
 
         _safeAddInstructor( _instructor, _name);
 
@@ -218,10 +213,13 @@ contract OwnershipInstructorRegisterV1 is Ownable {
         // If the implementation was never linked to an instructor
         // Loop through the Instructors
         uint256 size = instructorRegister.length;
-
+        // address _instrImpl;
+        // string memory _instrName;
         for(uint256 i; i<size;i++ ){
             if(IOwnershipInstructor(instructorRegister[i]._impl).isValidInterface(_impl)){
-                _instructor = instructorRegister[i];
+                // _instrImpl = instructorRegister[i]._impl;
+                // _instrName = instructorRegister[i]._name;
+                _instructor =instructorRegister[i];
                 break;
             }
         }

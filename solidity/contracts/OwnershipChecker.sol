@@ -2,23 +2,27 @@
 pragma solidity ^0.8.12;
 
 import "@openzeppelin/contracts/utils/introspection/ERC165.sol";
-import "./InstructorRegister.sol";
+// import "./InstructorRegister.sol";
+import "./Interfaces/IOwnershipInstructorRegisterV1.sol";
 import "./Interfaces/IOwnershipInstructor.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
 /**
  * Goes through a register of contracts and checks for ownership of an on-chain token.
  */
-contract OwnershipCheckerV1 is ERC165 {
+contract OwnershipCheckerV1 is ERC165,Ownable {
 
     string internal _name;
     string internal _symbol;
 
     address public register;
 
+    event NewRegister(address indexed register);
+
     constructor(address _register){
         _name="OwnershipCheckerV1";
         _symbol = "CHECK";
-        _register = _register;
+        register = _register;
     }
 
     function name() public view returns (string memory){
@@ -29,10 +33,14 @@ contract OwnershipCheckerV1 is ERC165 {
         return _symbol;
     }
 
+    function setRegisterImplementation(address _register) public onlyOwner{
+         register = _register;
+        emit NewRegister( _register);
+    }
+
 
     function ownerOfTokenAt(address _impl,uint256 _tokenId,address _potentialOwner) external view  returns (address){
-        OwnershipInstructorRegisterV1 reg = OwnershipInstructorRegisterV1(register);
-        OwnershipInstructorRegisterV1.Instructor memory object = reg.instructorGivenImplementation(_impl);
+        IOwnershipInstructorRegisterV1.Instructor memory object = IOwnershipInstructorRegisterV1(register).instructorGivenImplementation(_impl);
         if(object._impl == address(0)){
             return address(0);
         }else{

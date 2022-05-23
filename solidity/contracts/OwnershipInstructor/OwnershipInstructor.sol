@@ -1,6 +1,6 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.12;
-
+import "@openzeppelin/contracts/utils/introspection/IERC165.sol";
 import "../Interfaces/IOwnershipInstructor.sol";
 
 /**
@@ -9,7 +9,7 @@ import "../Interfaces/IOwnershipInstructor.sol";
  * by generalising the obtention of the owner of NFTs.
  * The reason for this solution was because NFTs nowadays have standards, but not all NFTs support these standards.
  */
-abstract contract OwnershipInstructor is IOwnershipInstructor{
+abstract contract OwnershipInstructor is IERC165, IOwnershipInstructor{
 
 /**
  * This function should be internal and should be overriden.
@@ -41,9 +41,9 @@ abstract contract OwnershipInstructor is IOwnershipInstructor{
     }
 
     /**
-     * @dev See {IERC165-supportsInterface}.
+     * See ERC165 -supportInterface()
      */
-    function supportsInterface(bytes4 interfaceId) public pure returns (bool) {
-        return interfaceId == type(IOwnershipInstructor).interfaceId;
+    function supportsInterface(bytes4 interfaceId) public pure override returns (bool) {
+        return interfaceId == type(IOwnershipInstructor).interfaceId || interfaceId == type(IERC165).interfaceId;
     }
 }
