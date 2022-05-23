@@ -16,9 +16,8 @@ interface ICryptoPunkContract {
  * The reason for this solution was because NFTs nowadays have standards, but not all NFTs support these standards.
  */
 contract CryptoPunkOwnershipInstructor is IERC165,IOwnershipInstructor{
-    address cryptopunk_impl;
+    address immutable cryptopunk_impl = 0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB;
     constructor(){
-        cryptopunk_impl = 0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB;
     }
 
 /**
