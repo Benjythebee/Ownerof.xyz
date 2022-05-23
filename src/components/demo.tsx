@@ -4,8 +4,13 @@ import {useEffect, useState} from 'preact/hooks'
 import * as ABI from '../lib/OwnershipChecker';
 
 const addresses = {eth:'0xdBcDEEe0E6A8E5a9aEcB27c633534164df13720f',polygon:'0x70d9176320B2589AF92aFE91797801F3efC6CEc3'}
-const EthContract = new ethers.Contract(addresses.eth,ABI.abi,ethers.getDefaultProvider())
-console.log(ABI.abi)
+const Contract = (chain:number=1)=>{
+    if (chain==137){
+        return new ethers.Contract(addresses.polygon,ABI.abi,new ethers.providers.JsonRpcProvider('https://rpc-mainnet.matic.quiknode.pro',137))
+    }
+    return new ethers.Contract(addresses.eth,ABI.abi,ethers.getDefaultProvider())
+}
+
 type config ={
     _impl?:string
     _tokenId?:string
@@ -22,10 +27,12 @@ export const Demo =({wallet,chain}:{wallet?:string,chain?:number})=>{
     const connectToMetamask = async ()=>{
         await (window as any).ethereum.request({ method: 'eth_requestAccounts' })
     }
-  
 
     const queryContract = async (e:any)=>{
         e.preventDefault();
+        if(!chain){
+            return
+        }
         let c = config
         if(!c._impl || !c._tokenId){
             return 
@@ -34,8 +41,8 @@ export const Demo =({wallet,chain}:{wallet?:string,chain?:number})=>{
             c._potentialOwner=ethers.constants.AddressZero
             setConfig({...config,_potentialOwner:ethers.constants.AddressZero})
         }
-        console.log(c)
-        const r = await EthContract.ownerOfTokenAt(c._impl,c._tokenId,c._potentialOwner)
+
+        const r = await Contract(chain).ownerOfTokenAt(c._impl,c._tokenId,c._potentialOwner)
         setResponse(r)
     }
 
