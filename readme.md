@@ -11,6 +11,15 @@
 
 <strong>Goal:</strong> Know the owner of an NFT in one single call.
 
+<b>Behind the box:</b>
+![diagram (3)](https://user-images.githubusercontent.com/38708022/169896291-fc63b6bf-a7e4-4850-bfd4-6db101f552c3.png)
+
+# Supported Conctracts:
+https://github.com/Benjythebee/OwnershipChecker/blob/master/solidity/readme.md
+
+To add a supported contract, create an issue or a pull request!
+
+
 # Contributing;
 
 1. Clone the repo
