@@ -26,3 +26,12 @@ div.SubMain{
 section{
     padding:5px;
 }
+
+
+div.Demo form{
+    display: grid;
+}
+
+input#ActualOwner{
+    width: 50%;
+}

@@ -4,33 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"
-    type="application/javascript"></script>
-    <link  rel="stylesheet" href="styles.css">
+    <link  rel="stylesheet" href="styles.css" >
+    <script defer type="module" src="app.tsx"></script>
     <title>Ownership Checker Home</title>
 </head>
 <body>
     <div class="Main">
-        <div class="SubMain">
-            <section>
-                <h2>Ownership Checker of NFTs</h2>
-                <h3>Standardizing ownerOf? Why?</h3>
-                <p>Noawadays, we thankfully have ethereum standards. For example <a href="https://eips.ethereum.org/EIPS/eip-721">EIP721</a>, <a href="https://eips.ethereum.org/EIPS/eip-1155">EIP1155</a> and more.</p>
-                <p>These, on top of <a href="https://eips.ethereum.org/EIPS/eip-165">EIP165</a> make checking the standard of a given smart contract easier.
-                <br /> However, this completely ignores previous NFT projects that were born prior to 2018 (for example Cryptokitties).<br/>
-                    This means that now, to know who owns a given NFT, one has to check for the standard of a smart contract, and then has to call different functions depending on those standards <b>IF</b> that contract supports the ERC721 interface or the ERC1155 interface.<br />
-                    If the contract doesn't support those, a manual process begins where the front-end has to iterate through some specific interfaces and call non-standard methods.<br/>
-                    All of that to know who owns a given NFT.
-                </p>
-                <br/>
-                
-                <p><strong>Goal:</strong> Create a modular system to know the owner of an NFT in one single call, regardless of its standard.</p>
-            </section>
-            <section>
-                
-            </section>
-        </div>
+        
     </div>
-    <script src="app.ts"></script>
 </body>
 </html>
