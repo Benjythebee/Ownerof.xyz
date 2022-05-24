@@ -6,7 +6,7 @@
     "node": ">=16"
   },
   "scripts": {
-    "start": "parcel serve ./src/index.html --dist-dir public",
+    "start": "parcel ./src/index.html --dist-dir public",
     "watch": "parcel watch ./src/index.html",
     "build": "parcel build src/index.html --dist-dir public",
     "rebuild": "npm run clean && npm run build",
