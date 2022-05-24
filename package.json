@@ -5,13 +5,6 @@
   "engines": {
     "node": ">=16"
   },
-  "source": "src/index.ts",
-  "module": "public/index.js",
-  "types": "public/index.d.ts",
-  "targets": {
-    "module": false,
-    "types": false
-  },
   "scripts": {
     "start": "parcel serve ./src/index.html --dist-dir public",
     "watch": "parcel watch ./src/index.html",
