@@ -7,26 +7,67 @@ body,html{
     font-family: system-ui;
 }
 
+p,h1,h2,h3{
+    padding:0;
+    margin:0;
+}
 div.Main{
+    width: 100%;
+    height: 100%;
+}
+
+div.HomeWrapper{
     position: relative;
     width: 100%;
     height: 100%;
 }
 
-div.SubMain{
+div.HomeWrapper > div.container{
     position: absolute;
     top:20%;
-    left:50%;
-    transform: translate(-50%,-20%);
+    left:40%;
+    transform: translate(-40%,-20%);
+}
+
+div.HomeWrapper > div.container> div {
     border:2px solid black;
     border-radius: 4px;
+    padding: 15px;
+    box-sizing: border-box;
+}
 
+
+div.HomeWrapper > div.container > footer{
+    text-align: center;
+    margin:auto;
+}
+
+a#github{
+    position: absolute;
+    top: 2px;
+    right:0%;
+}
+a#github img{
+    max-width: 78px;   
 }
 
 section{
-    padding:5px;
+    padding:10px;
 }
 
+div.Demo a{
+    font-size: larger;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    width: fit-content;
+    background-color: #e5e5e5;
+    border-radius: 4px;
+    cursor: pointer;
+}
+div.Demo a:hover{
+    background: #a5a5a5;
+}
 
 div.Demo form{
     display: grid;

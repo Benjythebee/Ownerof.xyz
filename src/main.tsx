@@ -57,9 +57,8 @@ export default class MainApp extends Component<any,State> {
 
     render({}:any,{wallet,chain}:State) {
       return (
-      <div class='Main'>      
+      <div class='Main'>    
         <Router >
-
           <Home path="/" chain={chain} wallet={wallet}/>
       </Router>
     </div>)

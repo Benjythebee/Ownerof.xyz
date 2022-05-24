@@ -30,12 +30,19 @@ export const Demo =({wallet,chain}:{wallet?:string,chain?:number})=>{
 
     const queryContract = async (e:any)=>{
         e.preventDefault();
+        setError(null!)
         if(!chain){
+            setError('An error ocurred, is your wallet connected?')
             return
         }
         let c = config
-        if(!c._impl || !c._tokenId){
-            return 
+        if(!c._impl || !ethers.utils.isAddress(c._impl)){
+            setError('Implementation address is invalid')
+            return
+        }
+        if(!c._tokenId){
+            setError('A token id is needed.')
+            return
         }
         if(!c._potentialOwner){
             c._potentialOwner=ethers.constants.AddressZero
@@ -52,8 +59,13 @@ export const Demo =({wallet,chain}:{wallet?:string,chain?:number})=>{
 
     return(
         <div className="Demo">
-            {!wallet?(
-                <button onClick={connectToMetamask}><img src="/MetaMask_Fox.png" width="32"/> Connect with metamask</button>
+            {!!error&&(
+                <b style={'color:red;'}>{error}</b>
+            )}
+            {!wallet && (window as any).ethereum?(
+                <a onClick={connectToMetamask}><img src="/MetaMask_Fox.png" width="32"/> Connect with metamask</a>
+            ):(!wallet && !(window as any).ethereum)?(
+                <a href="https://metamask.io/"><img src="/MetaMask_Fox.png" width="32"/> Get metamask</a>
             ):(
                 <form >
                     <b>Demo of ownerOfTokenAt: </b>
