@@ -63,7 +63,7 @@ export const Demo =({wallet,chain}:{wallet?:string,chain?:number})=>{
                 <b style={'color:red;'}>{error}</b>
             )}
             {!wallet && (window as any).ethereum?(
-                <a onClick={connectToMetamask}><img src="/MetaMask_Fox.png" width="32"/> Connect with metamask</a>
+                <a onClick={()=>connectToMetamask()}><img src="/MetaMask_Fox.png" width="32"/> Connect with metamask</a>
             ):(!wallet && !(window as any).ethereum)?(
                 <a href="https://metamask.io/"><img src="/MetaMask_Fox.png" width="32"/> Get metamask</a>
             ):(
