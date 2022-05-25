@@ -8,6 +8,9 @@ export const Home = ({path,wallet,chain}:{path:string,wallet?:string,chain?:numb
         <div className="HomeWrapper">
         <div className="container">
             <div>
+            {!!wallet&& <a id='chainIndicator' title={`You are currently connected to the ${chain==137?'polygon':'ethereum'} chain`} href={chain==137?`https://polygonscan.com`:`https://etherscan.io`}>
+                Current Network: <img src={chain==137?`/polygon.png`:`/ethereum.png`}/>
+            </a>}
             <a id='github' href='https://github.com/Benjythebee/OwnershipChecker'><img src='/GitHub_Logo.png'/></a>
             <h1>OwnerOf.xyz: <small>OwnerOf made easy</small></h1>
             <p>A Free modular protocol to bring cross-standard and cross-chain knowledge of NFT ownership</p>

@@ -27,14 +27,16 @@ OwnershipChecker address: **0xdBcDEEe0E6A8E5a9aEcB27c633534164df13720f** (https:
 **OwnershipInstructorRegisterV1:**
 - 0x84F3E0CdC068023639104d48D87097b0dE142148
 
-
 ### Ownership instructors:
 
-**ERC721OwnershipInstructor:**
+**ERC721_OwnershipInstructor:**
  - 0x45cCfF3d997019D2aC323074503B55f64D70588e
 
-**CryptoPunkOwnershipInstructor:**
+**CryptoPunk_OwnershipInstructor:**
  - 0x2CD5c679d016c4ed70C45C2B441E025606741d15
   
-**ERC1155OwnershipInstructor:**
+**ERC1155_OwnershipInstructor:**
  - 0xbf25050Fe5f4fA656f3F2bCFa3a84336C617636A
+
+**Voxels_OwnershipInstructor:**
+- 0x86B8c64b818b44144C1208a8aaD3f2A918371AA3

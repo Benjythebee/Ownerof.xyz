@@ -15,11 +15,13 @@ export default class MainApp extends Component<any,State> {
         this.setState({chain:parseInt(connectInfo.chainId)})
       }
     onDisconnect = async()=>{
-    this.setState({wallet:null!})
+      this.setState({wallet:null!})
     }
-    onChainChanged = async(chainId:number)=>{
-      this.setState({chain:chainId})
+    onChainChanged = async(chainId:string)=>{
+      let accounts = await this.ethereum.request({ method: 'eth_requestAccounts' })
+      this.setState({chain:parseInt(chainId,16),wallet:accounts[0]})
     }
+
     onAccountChanged = async(accounts:string[])=>{
         this.setState({wallet:accounts[0]})
       }

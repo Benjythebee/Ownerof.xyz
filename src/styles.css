@@ -51,6 +51,21 @@ a#github img{
     max-width: 78px;   
 }
 
+a#chainIndicator{
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    position: absolute;
+    border: 2px solid black;
+    top: 0;
+    right: -151px;
+    flex-direction: column;
+    text-decoration: none;
+    align-items: center;
+}
+a#chainIndicator img{
+    max-width: 28px;
+}
 
 section{
     padding:10px;

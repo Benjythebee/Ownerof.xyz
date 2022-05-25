@@ -21,6 +21,7 @@ export const Demo =({wallet,chain}:{wallet?:string,chain?:number})=>{
 
     const [config,setConfig] = useState<config>({})
     const [response,setResponse] = useState<string>('')
+    const [loading,setLoading] = useState<boolean>(false)
     const [error,setError] = useState<string>('')
 
 
@@ -29,6 +30,7 @@ export const Demo =({wallet,chain}:{wallet?:string,chain?:number})=>{
     }
 
     const queryContract = async (e:any)=>{
+        setResponse('')
         e.preventDefault();
         setError(null!)
         if(!chain){
@@ -48,9 +50,10 @@ export const Demo =({wallet,chain}:{wallet?:string,chain?:number})=>{
             c._potentialOwner=ethers.constants.AddressZero
             setConfig({...config,_potentialOwner:ethers.constants.AddressZero})
         }
-
+        setLoading(true)
         const r = await Contract(chain).ownerOfTokenAt(c._impl,c._tokenId,c._potentialOwner)
         setResponse(r)
+        setLoading(false)
     }
 
     const setConfigValue = (key:keyof config,value:string)=>{
@@ -70,13 +73,13 @@ export const Demo =({wallet,chain}:{wallet?:string,chain?:number})=>{
                 <form >
                     <b>Demo of ownerOfTokenAt: </b>
                     <label htmlFor="ContractAddress">Implementation address</label>
-                    <input type="text" name="ContractAddress" id="ContractAddress" maxLength={43} onInput={(e)=>setConfigValue('_impl',e.currentTarget.value)}/>
+                    <input type="text" name="ContractAddress" placeholder='0x84F3E0CdC068023639104d4...' id="ContractAddress" maxLength={43} onInput={(e)=>setConfigValue('_impl',e.currentTarget.value)}/>
                     <label htmlFor="TokenId">Token Id</label>
                     <input type="text" name="TokenId" id="TokenId" maxLength={74} onInput={(e)=>setConfigValue('_tokenId',e.currentTarget.value)}/>
                     <label htmlFor="PotentialOwner">Potential Owner <small>(optional, but required for erc1155)</small></label>
                     <input type="text" name="PotentialOwner" id="PotentialOwner" maxLength={43} onInput={(e)=>setConfigValue('_potentialOwner',e.currentTarget.value)}/>
                     <small>You are currently connected to the {chain==1?'Ethereum':chain==137?'Polygon':('#'+chain)} chain</small>
-                    <button onClick={queryContract}>Get the owner</button>
+                    <button onClick={queryContract} disabled={loading}>{loading?'Loading ...':`Get the owner`}</button>
                 </form>
             )}
             {!!wallet&& <div id={'ResponseInput'}>
