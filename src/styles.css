@@ -51,8 +51,27 @@ a#github img{
     max-width: 78px;   
 }
 
+
 section{
     padding:10px;
+}
+div.Center,section.Center{
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+a#ViewAPILink{
+    text-decoration: none;
+    background: #8dcd85;
+    color: black;
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+a#ViewAPILink:hover{
+    background: #73aa6b;
 }
 
 div.Demo a{

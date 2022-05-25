@@ -8,13 +8,16 @@ export const Home = ({path,wallet,chain}:{path:string,wallet?:string,chain?:numb
         <div className="HomeWrapper">
         <div className="container">
             <div>
+            <a id='github' href='https://github.com/Benjythebee/OwnershipChecker'><img src='/GitHub_Logo.png'/></a>
             <h1>OwnerOf.xyz: <small>OwnerOf made easy</small></h1>
             <p>A Free modular protocol to bring cross-standard and cross-chain knowledge of NFT ownership</p>
             <section>
                 <Demo wallet={wallet} chain={chain}/>
             </section>
+            <section className="Center">
+                <a id='ViewAPILink' href='https://api.ownerof.xyz'>View API</a>
+            </section>
             <section>
-                <a id='github' href='https://github.com/Benjythebee/OwnershipChecker'><img src='/GitHub_Logo.png'/></a>
                 <h3>Standardizing ownerOf? Why?</h3>
                 <p>Noawadays, we thankfully have ethereum standards. For example <a href="https://eips.ethereum.org/EIPS/eip-721">EIP721</a>, <a href="https://eips.ethereum.org/EIPS/eip-1155">EIP1155</a> and more.</p>
                 <p>These, on top of <a href="https://eips.ethereum.org/EIPS/eip-165">EIP165</a> make checking the standard of a given smart contract easier.
