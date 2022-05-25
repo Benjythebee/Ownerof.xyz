@@ -1,6 +1,6 @@
 
 import { h } from "preact"
-import { Demo } from "./demo"
+import { DemoTabs } from "./demo"
 
 export const Home = ({path,wallet,chain}:{path:string,wallet?:string,chain?:number})=>{
 
@@ -15,7 +15,7 @@ export const Home = ({path,wallet,chain}:{path:string,wallet?:string,chain?:numb
             <h1>OwnerOf.xyz: <small>OwnerOf made easy</small></h1>
             <p>A Free modular protocol to bring cross-standard and cross-chain knowledge of NFT ownership</p>
             <section>
-                <Demo wallet={wallet} chain={chain}/>
+                <DemoTabs wallet={wallet} chain={chain}/>
             </section>
             <section className="Center">
                 <a id='ViewAPILink' href='https://api.ownerof.xyz'>View API</a>
