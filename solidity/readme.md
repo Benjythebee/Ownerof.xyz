@@ -13,10 +13,10 @@ OwnershipChecker address: **0x70d9176320B2589AF92aFE91797801F3efC6CEc3**
 ### Ownership instructors:
 
 **ERC721OwnershipInstructor:**
- - 0xb3bd48aE00368ba32d14247d7e0Ce615FF0a02B2
+ - 0xb3bd48aE00368ba32d14247d7e0Ce615FF0a02B2 - name: `ERC721`
  
 **ERC1155OwnershipInstructor:**
- - 0xE7De0D82824e561fEaC2D9f9DAcC743F12319CCd
+ - 0xE7De0D82824e561fEaC2D9f9DAcC743F12319CCd - name: `ERC1155`
 
 
 ## Ethereum Mainnet:
@@ -30,13 +30,13 @@ OwnershipChecker address: **0xdBcDEEe0E6A8E5a9aEcB27c633534164df13720f** (https:
 ### Ownership instructors:
 
 **ERC721_OwnershipInstructor:**
- - 0x45cCfF3d997019D2aC323074503B55f64D70588e
+ - 0x45cCfF3d997019D2aC323074503B55f64D70588e - name: `ERC721`
 
 **CryptoPunk_OwnershipInstructor:**
- - 0x2CD5c679d016c4ed70C45C2B441E025606741d15
+ - 0x2CD5c679d016c4ed70C45C2B441E025606741d15 - name: `Cryptopunk`
   
 **ERC1155_OwnershipInstructor:**
- - 0xbf25050Fe5f4fA656f3F2bCFa3a84336C617636A
+ - 0xbf25050Fe5f4fA656f3F2bCFa3a84336C617636A - name: `ERC1155`
 
 **Voxels_OwnershipInstructor:**
-- 0x86B8c64b818b44144C1208a8aaD3f2A918371AA3
+- 0x86B8c64b818b44144C1208a8aaD3f2A918371AA3 - name: `Voxels`
