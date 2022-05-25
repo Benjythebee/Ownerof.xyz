@@ -1,4 +1,5 @@
 # Ownership Checker of NFTs
+
 ## Standardizing ownerOf? Why?
 
 <p>Noawadays, we thankfully have ethereum standards. For example <a href="https://eips.ethereum.org/EIPS/eip-721">EIP721</a>, <a href="https://eips.ethereum.org/EIPS/eip-1155">EIP1155</a> and more.</p>
