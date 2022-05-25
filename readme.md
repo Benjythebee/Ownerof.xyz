@@ -1,4 +1,47 @@
-# Ownership Checker of NFTs
+# Repo of the frontend and solidity contracts of OwnerOf.xyz
+
+## What's this about?
+
+Sometimes you just want to know if someone owns an NFT regardless of the chain, regardless of the ERC- standard.
+This protocol was made just for this. I got sick of making edge cases for every single contracts and every single standards.
+So the idea behind this network of contracts and this API is to obtain the owner of an NFT in one single call.
+
+## How to use:
+
+## Rest API:
+Documentation and repo is available at <a href="https://api.ownerof.xyz/">https://api.ownerof.xyz/</a>
+
+## Solidity:
+
+Find the list of addresses [here](https://github.com/Benjythebee/Ownerof.xyz/blob/master/solidity/readme.md)
+
+```js
+
+///@dev Interface of OwnershipChecker;
+interface IOwnershipChecker{
+    function ownerOfTokenAt(address _impl,uint256 _tokenId,address _potentialOwner) external view  returns (address);
+}
+
+
+contract MyContract{
+    address checker;
+
+    constructor(address _checker){
+        _checker = checker;
+    }
+
+    function getOwnerOfToken_NotERC1155(address myOtherTokenAddress, uint256 myToken) public view returns(address){
+        // In this case we assume we know for a fact the myOtherTokenAddress is not an ERC1155.
+        address result = IOwnershipChecker(checker).ownerOfTokenAt(myOtherTokenAddress,myToken,address(0))
+        return result
+    }
+
+    function getOwnerOfToken(address myOtherTokenAddress, uint256 myToken,address potentialOwner) public view returns(address){
+        address result = IOwnershipChecker(checker).ownerOfTokenAt(myOtherTokenAddress,myToken,potentialOwner)
+        return result
+    }
+}
+```
 
 ## Standardizing ownerOf? Why?
 
@@ -15,7 +58,7 @@
 <b>Behind the box:</b>
 ![diagram (3)](https://user-images.githubusercontent.com/38708022/169896291-fc63b6bf-a7e4-4850-bfd4-6db101f552c3.png)
 
-# Supported Conctracts:
+# Supported Conctracts by the protocol:
 https://github.com/Benjythebee/OwnershipChecker/blob/master/solidity/readme.md
 
 To add a supported contract, create an issue or a pull request!
@@ -30,7 +73,6 @@ List of currently supported Contracts:
 <ul>
     <li>any ERC1155</li>
     <li>any ERC721</li>
-    <li>Cryptopunk on Ethereum</li>
 </ul>
 
 <b>Todo:</b>
