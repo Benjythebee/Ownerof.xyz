@@ -35,8 +35,7 @@ List of currently supported Contracts:
 <b>Todo:</b>
 <ul>
     <li>More contracts to be supported</li>
-    <li>reate ownerOf for ERC20;</li>
-    <li>Create api call for multi-Chain ownerOfTokenAt()</li>
+    <li>create ownerOf for ERC20;</li>
 </ul>
 
 
