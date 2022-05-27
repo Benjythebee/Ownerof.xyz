@@ -6,3 +6,4 @@ solidity/package-lock.json
 solidity/build
 solidity/types
 solidity/node_modules
+.env

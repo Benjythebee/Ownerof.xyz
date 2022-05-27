@@ -6,7 +6,7 @@ import  MainApp  from './main'
 // Google API for page views;
 const s = document.createElement('script')
 s.async=true
-s.src = 'https://www.googletagmanager.com/gtag/js?id='+process.env.GOOGLE_API||''
+s.src = 'https://www.googletagmanager.com/gtag/js?id='+process.env.GOOGLE_ID||''
 document.head.insertBefore(s, document.head.firstChild);
 
 ;(window as any).dataLayer = (window as any).dataLayer || [];
@@ -16,6 +16,6 @@ function gtag(...args:any[]){
 }
 gtag('js', new Date());
 
-gtag('config', process.env.GOOGLE_API||'');
+gtag('config', process.env.GOOGLE_ID||'');
 
 render(<MainApp/>, document.body);
