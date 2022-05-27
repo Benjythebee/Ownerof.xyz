@@ -36,6 +36,8 @@ export const Home = ({path,wallet,chain}:{path:string,wallet?:string,chain?:numb
             <section>
                 <hr/>
                 Chain supported: <a href='https://polygonscan.com/address/0x70d9176320B2589AF92aFE91797801F3efC6CEc3#code'>Polygon</a>, <a href='https://etherscan.io/address/0x84F3E0CdC068023639104d48D87097b0dE142148#readContract'>Ethereum</a>
+                <br/>
+                Want to add your contract to our support? <a href="https://github.com/Benjythebee/OwnershipChecker">Make a github issue!</a>
             </section>
         </div>
         <footer>
