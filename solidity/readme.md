@@ -40,3 +40,6 @@ OwnershipChecker address: **0xdBcDEEe0E6A8E5a9aEcB27c633534164df13720f** (https:
 
 **Voxels_OwnershipInstructor:**
 - 0x86B8c64b818b44144C1208a8aaD3f2A918371AA3 - name: `Voxels`
+
+**Cryptokitties_OwnershipInstructor:**
+- 0x01A8cD509159e240324599B7EFd67688f7E58c87 - name:`Cryptokitties`
